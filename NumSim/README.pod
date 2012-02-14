@@ -4,6 +4,14 @@ Modeling Physical Systems with Modern Object Oriented Perl
 
 =head1 Abstract
 
+Many scientists use Fortran for their numeric modeling. Some of my fellow Ph.D. candidates have done all of their work in Mathematica. Closer to home, L<PDL> provides Perl with some really nice numerical array handling power. Still, all of these tools left me looking for something higher level.
+
+In this talk I will present some of the modeling paradigms I have been using in my research. These simulations model physical systems as Perl objects (rapid designing of classes via L<MooseX::Declare>). Dynamics are closures which genereated by some objects and influence others. Using this paradigm, simulations are written quickly and are tremendously flexible and extensible.
+
+For the majority of the talk, I will use a Perl-level fixed time-step differential equations solver. At the end, I will introduce (ever so briefly) my L<Math::GSLx::ODEIV2> module, which I use to solve systems of differential equations which are made of closures over these object/closure systems.
+
+I hope this talk will show that high-level languages can be used to model physical systems and make it feel very natural to the Perl programmer.
+
 =head1 Concept
 
 This talk would be in the "Perl in the Wild" sequence and likely would
@@ -18,14 +26,14 @@ the system (e.g. lenses, rf compression cavities) contribute position
 dependent terms to two of the equations. I really wanted to make a
 simulation that people could use without know about the underlying
 simulation. I cast the whole system a class of Perl objects using
-MooseX::Declare. An electron and laser pulse objects, as well as a
+L<MooseX::Declare>. An electron and laser pulse objects, as well as a
 column object are created by the user. Then lens and compressor
 objects are created and added to the column object. This is a easy as
 it sounds from the user standpoint. Underneath, each object generates
 a closure representing the term of the differential equation. Then a
 super-closure is created which wraps all the effects and the general
 equations. This closure is passed to my specially made differential
-equation solver Math::GSLx::ODEIV2 which (as the name suggests) calls
+equation solver L<Math::GSLx::ODEIV2> which (as the name suggests) calls
 the GSL.
 
 This has been a long description of what I hope could actually be
@@ -38,10 +46,10 @@ as objects.
 
 The model can be seen at
 
-https://github.com/jberger/Physics-UEMColumn
+L<https://github.com/jberger/Physics-UEMColumn>
 
 and an example user's script is available at
 
-https://github.com/jberger/Physics-UEMColumn/blob/master/Cooke.pl
+L<https://github.com/jberger/Physics-UEMColumn/blob/master/Cooke.pl>
 
-N.B. PDL is used at the end for visualization, but PDL is not used internally
+N.B. L<PDL> is used at the end for visualization, but is not used internally
