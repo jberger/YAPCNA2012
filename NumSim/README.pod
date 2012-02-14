@@ -1,6 +1,6 @@
 =head1 Title
 
-Modeling Electron Dynamics with Modern Object Oriented Perl
+Modeling Physical Systems with Modern Object Oriented Perl
 
 =head1 Abstract
 

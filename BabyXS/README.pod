@@ -10,3 +10,26 @@ In this talk I will present a minimal subset of XS needed to get started. I will
 
 If you would like to learn enough to start a small XS project, come see this talk.
 
+=head1 Concept
+
+This is in the beginning or intermediate level, specifically geared to
+people with Perl and C experience but who are afraid of XS. In truth I
+knew little C, and this project helped me learn it.
+
+Many Perl users see XS as black magic and too hard to get into. I
+thought this too, but had to get over the hump in order to write
+L<Math::GSLx::ODEIV2>. In doing so I learned that while XS can be
+powerful and magical, you actually B<NEED> very little of it. I imagine
+my talk might show a simple example case of wrapping some C code into
+Perl using "baby XS". I term "baby XS" as XS with no C<TYPEMAP>s and just
+stubs below the C<MODULE> line. I will recommend (to start) to not play
+with the stack, and to return an array reference when needed. I would
+avoid L<h2xs> and probably even L<ExtUtils::MakeMaker>, opting instead for 
+L<Module::Build>.
+I don't reject more XS-y style, but it can be too much to just jump
+into, I hope that this talk can encourage more people to reuse good C
+code when needed.
+
+I may use my L<Text::AsciiTeX> as a base, or some other simple library or
+even C function too. At the end users should be able to write a fully
+functioning Perl module which wraps a C level function.
