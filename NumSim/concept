@@ -1,0 +1,39 @@
+This talk would be in the "Perl in the Wild" sequence and likely would
+be about 20 minutes (it could be longer but it would get too technical
+for anyone to care). In my research at UIC I model the dynamics of
+electron pulses in a (proposed) time-resolved electron microscope.
+These dynamics are very important for designing the microscope. The
+model consists of 7 highly coupled first-order differential equations.
+Were it just this I might just feed the equations into Mathematica or
+the Gnu Scientific Library (GSL, a C library), however each element in
+the system (e.g. lenses, rf compression cavities) contribute position
+dependent terms to two of the equations. I really wanted to make a
+simulation that people could use without know about the underlying
+simulation. I cast the whole system a class of Perl objects using
+MooseX::Declare. An electron and laser pulse objects, as well as a
+column object are created by the user. Then lens and compressor
+objects are created and added to the column object. This is a easy as
+it sounds from the user standpoint. Underneath, each object generates
+a closure representing the term of the differential equation. Then a
+super-closure is created which wraps all the effects and the general
+equations. This closure is passed to my specially made differential
+equation solver Math::GSLx::ODEIV2 which (as the name suggests) calls
+the GSL.
+
+This has been a long description of what I hope could actually be
+conveyed rather easily. Closures can represent parts of your logic,
+those can be wrapped into a larger logic and used. It also
+demonstrates that numerical modeling can be done in high-level
+languages if speed isn't an issue. Object oriented design lends itself
+quite well to numerical modeling if you think of different influences
+as objects.
+
+The model can be seen at
+
+https://github.com/jberger/Physics-UEMColumn
+
+and an example user's script is available at
+
+https://github.com/jberger/Physics-UEMColumn/blob/master/Cooke.pl
+
+N.B. PDL is used at the end for visualization, but PDL is not used internally
