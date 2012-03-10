@@ -6,13 +6,11 @@
 \author{Joel Berger}
 \institute[UIC]{University of Illinois at Chicago}
 
-\usepackage{listings}
+\usepackage{pygments}
 
 \providecommand{\subitem}[1]{\begin{itemize}\item#1\end{itemize}}
 
 \begin{document}
-
-\lstset{basicstyle=\tiny}
 
 \begin{frame}
   \maketitle
@@ -22,111 +20,11 @@
   \tableofcontents
 \end{frame}
 
-\section{What is XS?}
-
-\begin{frame}{What is XS}
-  \begin{block}{}
-    XS is the way to interface C code with Perl
-  \end{block}
-\end{frame}
-
-\begin{frame}{OK, so what \emph{is} XS}
-  XS is another language.
-  \begin{itemize}
-    \item Can look a little like C
-    \item Actually compiles to C
-    \item Has lots of other syntax
-      \begin{itemize}
-        \item xsub preprocessor directives
-        \item Perl macros and functions
-      \end{itemize}
-    \item Typemaps for ...
-  \end{itemize}
-\end{frame}
-
-\section{How can it be easier?}
-
-\begin{frame}{How can it be easier?}
-  Ok maybe not easier, but faster for a C programmer to understand
-  \begin{itemize}
-    \item Almost all C
-      \subitem{XS for glue only}
-    \item Ignore the Perl stack
-      \subitem{return array references when needed}
-    \item Ignore Typemaps
-      \subitem{pack into Perl scalars (SV*) by hand}
-    \item FORGET about h2xs!
-  \end{itemize}
-\end{frame}
-
-\section{Getting stuff done}
-
-\begin{frame}{Skeletons}
-
-\end{frame}
-
-\begin{frame}[fragile]{Returning an SV*}
-  \lstset{language=C}
-
-  Perl functions, declared in XS can accept/return
-  \begin{itemize}
-    \item int
-    \item double
-    \item char*
-    \item SV*
-  \end{itemize}
-  and the Perl function will know how to use them.
-  \begin{lstlisting}
-    int meaning () { return 42 }
-    void greet (char* name) { printf( "Hello %s", name ) } 
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]{Full Code (lib/My/Module.xs)}
-  \lstset{language=C}
-
-  \begin{lstlisting}
-#include "EXTERN.h"
-#include "perl.h"
-#include "XSUB.h"
-
-int meaning () { return 42 }
-void greet (char* name) 
-{
-  printf( "Hello %s\n", name ) 
-}
-
-MODULE = My::Module    PACKAGE = My::Module
-
-int
-meaning ()
-
-void
-greet (name)
-    char* name
-  \end{lstlisting}
-\end{frame}
+\section{The Code}
 
 \begin{frame}[fragile]{Full Code (lib/My/Module.pm)}
-  \lstset{language=Perl}
-  \begin{lstlisting}
-package My::Module;
-
-use strict;
-use warnings;
-
-use parent 'Exporter';
-
-our $VERSION = '0.01';
-$VERSION = eval $VERSION;
-
-require XSLoader;
-XSLoader::load('My::Module', $VERSION);
-
-our @EXPORT = ( qw/ meaning greet / );
-
-1;
-  \end{lstlisting}
+  \tiny
+  \input{code/basic}
 \end{frame}
 
 \end{document}

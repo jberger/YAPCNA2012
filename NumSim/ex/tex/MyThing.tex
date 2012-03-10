@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{class} \PY{n}{MyThing} \PY{p}{\PYZob{}}
+
+  \PY{n}{has} \PY{l+s}{'mass'} \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'Num'}\PY{p}{,} \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'ro'}\PY{p}{,} \PY{n}{required} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{1} \PY{p}{)}\PY{p}{;}
+  \PY{n}{has} \PY{l+s}{'x'}    \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'Num'}\PY{p}{,} \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'rw'}\PY{p}{,} \PY{n}{default} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{0} \PY{p}{)}\PY{p}{;}
+  \PY{n}{has} \PY{l+s}{'vx'}   \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'Num'}\PY{p}{,} \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'rw'}\PY{p}{,} \PY{n}{default} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{0} \PY{p}{)}\PY{p}{;}
+
+  \PY{n}{method} \PY{n}{state} \PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+    \PY{k}{return} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n}{x}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n}{vx}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+  \PY{p}{\PYZcb{}}
+
+\PY{p}{\PYZcb{}}
+\end{Verbatim}

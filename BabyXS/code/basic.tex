@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+cp}{\PYZsh{}}\PY{c+cp}{include "EXTERN.h"}
+\PY{c+cp}{\PYZsh{}}\PY{c+cp}{include "perl.h"}
+\PY{c+cp}{\PYZsh{}}\PY{c+cp}{include "XSUB.h"}
+
+\PY{k+kt}{int} \PY{n+nf}{meaning} \PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}} \PY{k}{return} \PY{l+m+mi}{42} \PY{p}{\PYZcb{}}
+\PY{k+kt}{void} \PY{n+nf}{greet} \PY{p}{(}\PY{k+kt}{char}\PY{o}{*} \PY{n}{name}\PY{p}{)} 
+\PY{p}{\PYZob{}}
+  \PY{n}{printf}\PY{p}{(} \PY{l+s}{"}\PY{l+s}{Hello \PYZpc{}s}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{"}\PY{p}{,} \PY{n}{name} \PY{p}{)} 
+\PY{p}{\PYZcb{}}
+
+\PY{n}{MODULE} \PY{o}{=} \PY{n}{My}\PY{o}{:}\PY{o}{:}\PY{n}{Module}    \PY{n}{PACKAGE} \PY{o}{=} \PY{n}{My}\PY{o}{:}\PY{o}{:}\PY{n}{Module}
+
+\PY{k+kt}{int}
+\PY{n}{meaning} \PY{p}{(}\PY{p}{)}
+
+\PY{k+kt}{void}
+\PY{n}{greet} \PY{p}{(}\PY{n}{name}\PY{p}{)}
+    \PY{k+kt}{char}\PY{o}{*} \PY{n}{name}
+\end{Verbatim}
