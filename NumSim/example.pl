@@ -6,13 +6,14 @@ use warnings;
 use MySim;
 use Data::Dumper;
 use PDL;
+use PDL::Graphics::Gnuplot qw/plot/;
 
 my $thing = MyThing->new(
   mass => 2,
 );
 
 my $force = MyForce->new(
-  strength => 1,
+  strength => 2,
   affect => sub {
     my ($self, $thing, $sim) = @_;
     return $self->strength;
@@ -20,7 +21,7 @@ my $force = MyForce->new(
 );
 
 my $short_force = MyForce->new(
-  strength => 1,
+  strength => 5,
   affect => sub {
     my ($self, $thing, $sim) = @_;
     return 0 if ($thing->x > 0.1);
@@ -31,11 +32,11 @@ my $short_force = MyForce->new(
 my $sim = MySim->new(
   things => [ $thing ],
   forces => [ $force, $short_force ],
+  steps  => 100,
 );
 
 $sim->run;
 
 my $pdl = pdl $sim->log->{$thing};
-
-print $pdl;
+plot($pdl->slice('(0),'), $pdl->slice('(1),'));
 
