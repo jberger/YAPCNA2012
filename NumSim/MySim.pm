@@ -1,4 +1,3 @@
-use lib '/home/joel/Programs/Dist/MooseX-RememberHistory/lib';
 use MooseX::RememberHistory;
 
 use MooseX::Declare;
