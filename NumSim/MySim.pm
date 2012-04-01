@@ -1,3 +1,6 @@
+use lib '/home/joel/Programs/Dist/MooseX-RememberHistory/lib';
+use MooseX::RememberHistory;
+
 use MooseX::Declare;
 use Method::Signatures::Modifiers;
 
@@ -10,11 +13,10 @@ class MySim {
   has 'steps'  => (isa => 'Num', is => 'ro', default => 10);
 
   has 'step'   => ( isa => 'Num', is => 'ro', lazy => 1, builder => 'init_step' );
-  has 'time'   => ( isa => 'Num', is => 'rw', lazy => 1, builder => 'init_time' );
+  has 'time'   => ( traits => [ 'RememberHistory' ], isa => 'Num', is => 'rw', lazy => 1, builder => 'init_time' );
 
   has 'things' => ( isa => 'ArrayRef[MyThing]', is => 'rw', default => sub{ [] } );
   has 'forces' => ( isa => 'ArrayRef[MyForce]', is => 'rw', default => sub{ [] } );
-  has 'log'    => ( isa => 'HashRef',           is => 'rw', default => sub{ {} } );
 
   method init_step () {
     my $step = ($self->end - $self->start) / $self->steps;
@@ -22,10 +24,6 @@ class MySim {
   }
 
   method init_time () { return $self->start }
-
-  method record ( MyThing $thing ) {
-    push @{ $self->log->{$thing . ''} }, [ $self->time, $thing->state ];
-  }
 
   method evolve ( MyThing $thing ) {
     my $dt = $self->step;
@@ -36,14 +34,9 @@ class MySim {
 
     $thing->vx( $vx + $acc * $dt );
     $thing->x( $thing->x + $vx * $dt );
-
-    $self->record( $thing );
   }
 
   method run () {
-    $self->record( $_ ) for @{ $self->things };
-    $self->time( $self->time + $self->step );
-
     while ($self->time < $self->end) {
       $self->evolve( $_ ) for @{ $self->things };
       $self->time( $self->time + $self->step );
@@ -61,11 +54,7 @@ class MyForce {
 class MyThing {
 
   has 'mass' => ( isa => 'Num', is => 'ro', required => 1 );
-  has 'x'    => ( isa => 'Num', is => 'rw', default => 0 );
-  has 'vx'   => ( isa => 'Num', is => 'rw', default => 0 );
-
-  method state () {
-    return $self->x(), $self->vx();
-  }
+  has 'x'    => ( traits => [ 'RememberHistory' ], isa => 'Num', is => 'rw', default => 0 );
+  has 'vx'   => ( traits => [ 'RememberHistory' ], isa => 'Num', is => 'rw', default => 0 );
 
 }

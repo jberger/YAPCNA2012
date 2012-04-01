@@ -37,6 +37,8 @@ my $sim = MySim->new(
 
 $sim->run;
 
-my $pdl = pdl $sim->log->{$thing};
-plot($pdl->slice('(0),'), $pdl->slice('(1),'));
+my $time = pdl $sim->time_history;
+my $x    = pdl $thing->x_history;
+
+plot($time, $x);
 
