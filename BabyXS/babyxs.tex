@@ -1,5 +1,7 @@
 \documentclass{beamer}
 
+\usepackage{amsmath,amssymb,amsfonts}
+
 \usetheme[secheader]{Madrid}
 
 \title[Baby XS]{Baby XS: Just enough to get you started\\YAPC::NA 2012}
@@ -18,6 +20,71 @@
 
 \begin{frame}{Outline}
   \tableofcontents
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}{What is XS?}
+  \begin{itemize}
+    \item XS links Perl and C
+    \item XS is C functions/macros provided by Perl headers
+    \item XS is also XS-preprocessesor directives
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{What are ``baby'' languages?}
+  \begin{block}{``Baby'' Langauge}
+    The naive code that new programmers write
+  \end{block}
+  \begin{itemize}
+    \item ``Baby Perl''
+      \begin{itemize}
+        \item no map/grep
+        \item no references
+        \item avoids \$\_
+      \end{itemize}
+    \item ``Full XS'' is powerful but is lots to learn
+    \item ``Baby XS'' 
+     \begin{itemize}
+       \item looks like C
+       \item behaves like Perl
+     \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{Baby XS}
+
+\begin{frame}{Baby XS}
+  \begin{block}{}
+    Some "easy" idioms and rules-of-thumb to keep XS from becoming overwhelming
+  \end{block}
+  \begin{itemize}
+    \item ignores typemaps
+    \item uses Perl datatype functions from perlguts
+    \item ignores most of the XSpp commands
+    \item ignores stack macros
+    \item avoids issues of ``mortalization''
+    \item uses a Perl-level function wrapper to munge input/output if needed
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Types}
+  XS has types that are like their Perl counterparts
+  \begin{itemize}
+    \item Scalar $\Leftrightarrow$ SV*
+    \item Array $\Leftrightarrow$ AV*
+    \item Hash $\Leftrightarrow$ HV*
+  \end{itemize}
+  Of course XS is really C so it also has types like
+  \begin{itemize}
+    \item int
+    \item double
+    \item char*
+  \end{itemize}
+  \ldots which Perl converts to/from SV* when used as arguments or return value
+  \begin{block}{For Future Reference}
+    You can add you own automatic conversions via a \alert{Typemap} file
+  \end{block}
 \end{frame}
 
 \section{The Code}
