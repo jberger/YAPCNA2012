@@ -6,7 +6,7 @@ use warnings;
 use MySim;
 use Data::Dumper;
 use PDL;
-use PDL::Graphics::Gnuplot qw/plot/;
+use PDL::Graphics::Prima::Simple;
 
 my $thing = MyThing->new(
   mass => 2,
@@ -40,5 +40,5 @@ $sim->run;
 my $time = pdl $sim->time_history;
 my $x    = pdl $thing->x_history;
 
-plot($time, $x);
+line_plot($time, $x);
 
