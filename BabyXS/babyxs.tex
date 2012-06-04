@@ -93,38 +93,40 @@
 \section{The Code}
 
 \begin{frame}[fragile]{Full Code (lib/My/Module.xs)}
-  \tiny
+  \scriptsize
   \begin{columns}
-    \begin{column}{0.49\linewidth}
-      \input{code/basic}
+    \begin{column}{0.54\linewidth}
+      \begin{block}{}
+        \input{code/basic}
+      \end{block}
     \end{column}
-    \begin{column}{0.49\linewidth}
+    \begin{column}{0.44\linewidth}
       \begin{tikzpicture}
         \visible<2->{
           \draw
             [decoration={brace,amplitude=0.5em},decorate,ultra thick,gray]
-            (0,2) --
-            (0,1.3)
+            (0,2.7) --
+            (0,1.7)
               node [right=5mm,pos=0.5] {XS standard inclusions}
           ;
         }
         \visible<3->{
           \draw
             [decoration={brace,amplitude=0.5em},decorate,ultra thick,gray]
-            (0,1) --
-            (0,-0.2)
+            (0,1.7) --
+            (0,0.2)
               node [right=5mm,pos=0.5] {C Code}
           ;
         }
         \visible<4->{
-          \node at (1.4,-0.75) [gray] {Begin XS section};
+          \node at (1.4,-0.5) [gray] {Begin XS section};
         }
         \visible<5->{
           \draw
             [decoration={brace,amplitude=0.5em},decorate,ultra thick,gray]
-            (0,-1.1) --
-            (0,-2.5)
-              node [right=5mm,pos=0.5] {XS Code}
+            (0,-1.2) --
+            (0,-2.9)
+              node [right=5mm,pos=0.5,align=left] {XS Code\\(Shown: Simple Declarations)}
           ;
         }
       \end{tikzpicture}
@@ -163,13 +165,19 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{Using AV* and HV*}
+\begin{frame}[fragile]{Using AV* and HV*}
   \begin{itemize}
-    \item Perl-like functions, e.g. push
+    \item Perl-like functions, e.g. \verb!av_push!
     \item filled with SV* objects
-    \item used as argument or return, automatically coerced to reference
+    \item used as argument or return value, Perl uses references
+    \item ``mortalization'' problem for returns
+    \item Baby XS way to return multiple values:
   \end{itemize}
-  Like SV*, the Perl API provides functions to work with arrays and hashes. They are filled with SV*s only.
+  \vfill
+  \begin{block}{}
+    \scriptsize
+    \input{code/av}
+  \end{block}
 \end{frame}
 
 \end{document}
