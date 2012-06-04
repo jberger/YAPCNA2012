@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{AV}\PY{o}{*} \PY{n+nf}{foo} \PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+  \PY{n}{AV}\PY{o}{*} \PY{n}{ret} \PY{o}{=} \PY{n}{newAV}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+  \PY{c+cm}{/* fix mortalization */}
+  \PY{n}{sv\PYZus{}2mortal}\PY{p}{(}\PY{p}{(}\PY{n}{SV}\PY{o}{*}\PY{p}{)}\PY{n}{ret}\PY{p}{)}\PY{p}{;}
+
+  \PY{n}{av\PYZus{}push}\PY{p}{(}\PY{n}{ret}\PY{p}{,} \PY{n}{newSViv}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+  \PY{n}{av\PYZus{}push}\PY{p}{(}\PY{n}{ret}\PY{p}{,} \PY{n}{newSVpvf}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{\PYZpc{}s}\PY{l+s}{"}\PY{p}{,} \PY{l+s}{"}\PY{l+s}{bar}\PY{l+s}{"}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+
+  \PY{c+cm}{/* return [ 1, "bar" ] */}
+  \PY{k}{return} \PY{n}{ret}\PY{p}{;}
+\PY{p}{\PYZcb{}}
+\end{Verbatim}
