@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{package} \PY{n}{MyModule}\PY{p}{;}
+
+\PY{k}{use} \PY{n}{strict}\PY{p}{;} \PY{k}{use} \PY{n}{warnings}\PY{p}{;}
+\PY{k}{our} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{VERSION} \PY{o}{=} \PY{l+s}{'0.01'}\PY{p}{;}
+
+\PY{n+nb}{require} \PY{n}{XSLoader}\PY{p}{;}
+\PY{n+nn}{XSLoader::}\PY{n}{load}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+
+\PY{k}{sub }\PY{n+nf}{myfunc} \PY{p}{\PYZob{}}
+  \PY{k}{my} \PY{n+nv}{@}\PY{n+nv}{args} \PY{o}{=} \PY{n+nv}{@}\PY{n+nv}{\PYZus{}}\PY{p}{;}
+  \PY{k}{my} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{ret} \PY{o}{=} \PY{n}{c\PYZus{}func}\PY{p}{(}\PY{n+nv}{@}\PY{n+nv}{args}\PY{p}{)}\PY{p}{;}
+  \PY{k}{return} \PY{n+nb}{wantarray} \PY{p}{?} \PY{n+nv}{@\PYZdl{}}\PY{n+nv}{ret} \PY{p}{:} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{ret}\PY{o}{-}\PY{o}{>}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{;}
+\PY{p}{\PYZcb{}}
+\end{Verbatim}

@@ -180,8 +180,19 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{Perl Module}
-
+\begin{frame}[fragile]{Perl Module}
+  \begin{block}{}
+    \scriptsize
+    \input{code/module}
+  \end{block}
+  \begin{itemize}
+    \item Wrap C function calls in Perl subs
+    \begin{itemize}
+      \item munge inputs / outputs easier
+      \item abstraction if C function changes
+    \end{itemize}
+    \item Export the Perl function (if desired)
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Building}
