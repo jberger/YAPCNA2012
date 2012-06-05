@@ -2,7 +2,25 @@
 
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{tikz}
-\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{
+  positioning,
+  decorations.pathreplacing,
+  shapes.misc,
+  trees
+}
+\tikzset{file/.style={
+  chamfered rectangle,
+  chamfered rectangle corners=north west,
+  draw, thick,
+  fill=gray!30,
+  anchor=west
+}}
+\tikzset{folder/.style={
+  draw, thick,
+  fill=brown!50,
+  inner ysep=2mm,
+  anchor=west
+}}
 
 \usetheme[secheader]{Madrid}
 \setbeamercovered{transparent=50}
@@ -92,7 +110,7 @@
 
 \section{The Code}
 
-\begin{frame}[fragile]{Full Code (lib/My/Module.xs)}
+\begin{frame}[fragile]{Sample XS File}
   \scriptsize
   \begin{columns}
     \begin{column}{0.54\linewidth}
@@ -180,7 +198,7 @@
   \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Perl Module}
+\begin{frame}[fragile]{The Perl Module}
   \begin{block}{}
     \scriptsize
     \input{code/module}
@@ -195,8 +213,36 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Building}
+\begin{frame}{Building/Packaging (Module::Build)}
+  
+  \begin{columns}
+    \begin{column}{0.49\linewidth}
+      \begin{block}{Structure}
+        \begin{tikzpicture}
+          [
+            grow via three points={
+              one child at    (0.7,-1) and
+              two children at (0.7,-1) and (0.7,-2)
+            },
+            edge from parent path={[thick] (\tikzparentnode.south) |- (\tikzchildnode.west)}
+          ]
+          \node [folder] {root folder}
+            child { node [folder] {lib}
+              child { node [file] {MyModule.pm} }
+              child { node [file] {MyModule.xs} }
+            }
+            child [missing] {}
+            child [missing] {}
+            child { node [file] {Build.PL} }
+            child { node [file] { \ldots \vphantom{X}} }
+          ;
+        \end{tikzpicture}
+      \end{block}
+    \end{column}
+    \begin{column}{0.49\linewidth}
 
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Other C Connections}
