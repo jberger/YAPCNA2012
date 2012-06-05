@@ -34,6 +34,7 @@
 \usepackage{pygments}
 
 \providecommand{\subitem}[1]{\begin{itemize}\item#1\end{itemize}}
+\providecommand{\code}[1]{{\texttt{\scriptsize{#1}}}}
 
 \begin{document}
 
@@ -63,9 +64,9 @@
   \begin{itemize}
     \item ``Baby Perl''
       \begin{itemize}
-        \item no map/grep
+        \item no \code{map} / \code{grep}
         \item no references
-        \item avoids \$\_
+        \item avoids \code{\$\_}
       \end{itemize}
     \item ``Full XS'' is powerful but is lots to learn
     \item ``Baby XS'' 
@@ -78,13 +79,13 @@
 
 \section{Baby XS}
 
-\begin{frame}[fragile]{Baby XS}
+\begin{frame}{Baby XS}
   \begin{block}{}
     Some ``easy'' idioms and rules-of-thumb to keep XS from becoming overwhelming
   \end{block}
   \begin{itemize}
     \item ignores typemaps
-    \item uses Perl datatype-specific functions from \verb!perldoc perlguts!
+    \item uses Perl datatype-specific functions from \code{perldoc perlguts}
     \item ignores most of the XSpp commands
     \item ignores stack macros
     \item avoids (most) issues of ``mortalization''
@@ -95,19 +96,19 @@
 \begin{frame}{Types}
   XS has types that are like their Perl counterparts
   \begin{itemize}
-    \item Scalar $\Leftrightarrow$ SV*
-    \item Array $\Leftrightarrow$ AV*
-    \item Hash $\Leftrightarrow$ HV*
+    \item Scalar $\Leftrightarrow$ \code{SV*}
+    \item Array $\Leftrightarrow$ \code{AV*}
+    \item Hash $\Leftrightarrow$ \code{HV*}
   \end{itemize}
   Of course XS is really C so it also has types like
   \begin{itemize}
-    \item int
-    \item double
-    \item char*
+    \item \code{int}
+    \item \code{double}
+    \item \code{char*}
   \end{itemize}
-  \ldots which Perl converts to/from SV* when used as arguments or return value
+  \ldots which Perl converts to/from \code{SV*} when used as arguments or return value
   \begin{block}{For Future Reference}
-    You can add you own automatic conversions via a \alert{Typemap} file
+    You can add you own automatic conversions via a \code{Typemap} file
   \end{block}
 \end{frame}
 
@@ -155,41 +156,41 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Using SV*s}
+\begin{frame}{Using \texttt{SV*}s}
   SV* behave like scalars in Perl, but have different actions based on type
   \begin{columns}
     \begin{column}{0.54\linewidth}
       \begin{block}{Creation}
         \begin{itemize}
-          \item \verb!newSViv(IV)!
-          \item \verb!newSVuv(UV)!
-          \item \verb!newSVnv(double)!
-          \item \verb!newSVpvf(const char*, ...)!
-          \item \verb!newSVsv(SV*)!
+          \item \code{newSViv(IV)}
+          \item \code{newSVuv(UV)}
+          \item \code{newSVnv(double)}
+          \item \code{newSVpvf(const char*, ...)}
+          \item \code{newSVsv(SV*)}
         \end{itemize}
       \end{block}
     \end{column}
     \begin{column}{0.44\linewidth}
       \begin{block}{Accessing}<2->
         \begin{itemize}
-          \item \verb!SvIV(SV*)!
-          \item \verb!SvUV(SV*)!
-          \item \verb!SvNV(SV*)!
-          \item \verb!SvPV(SV*, STRLEN len)!
-          \item \verb!SvPV_nolen(SV*)!
+          \item \code{SvIV(SV*)}
+          \item \code{SvUV(SV*)}
+          \item \code{SvNV(SV*)}
+          \item \code{SvPV(SV*, STRLEN len)}
+          \item \code{SvPV\_nolen(SV*)}
         \end{itemize}
       \end{block}
     \end{column}
   \end{columns}
   \begin{block}{Other Actions}<3->
-    Plenty of other Perl-like actions, e.g. truth, concatenation etc. See \verb!perldoc perlguts! for more.
+    Plenty of other Perl-like actions, e.g. truth, concatenation etc.\\See \code{perldoc perlguts} for more.
   \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Using AV* and HV*}
+\begin{frame}[fragile]{Using \texttt{AV*}s and \texttt{HV*}s}
   \begin{itemize}
-    \item Perl-like functions, e.g. \verb!av_push!
-    \item filled with SV* objects
+    \item Perl-like functions, e.g. \code{av\_push}
+    \item filled with \code{SV*} objects
     \item used as argument or return value, Perl uses references
     \item ``mortalization'' problem for returns
     \item Baby XS way to return multiple values:
@@ -217,7 +218,6 @@
 \end{frame}
 
 \begin{frame}{Building/Packaging (Module::Build)}
-  
   \begin{columns}
     \begin{column}{0.49\linewidth}
       \begin{block}{Structure}
@@ -253,7 +253,21 @@
 \end{frame}
 
 \begin{frame}{Other C Connections}
-
+  There are other mechanisms for hooking into C
+  \begin{itemize}
+    \item \code{Inline::C}
+      \begin{itemize}
+        \item write C in your Perl script
+        \item builds/loads the XS for you!
+        \item great for quick checks
+      \end{itemize}
+    \item \code{PDL::PP}
+      \begin{itemize}
+        \item part of \code{PDL}
+        \item special C interaction for fast numerical processing
+        \item has its own syntax
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Acknowledgements}
