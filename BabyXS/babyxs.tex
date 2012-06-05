@@ -55,7 +55,7 @@
 
 \begin{frame}{What are ``baby'' languages?}
   \begin{block}{``Baby'' Langauge}
-    The naive code that new programmers write
+    The naive code that new programmers write,\\a simple subset of the full language
   \end{block}
   \begin{itemize}
     \item ``Baby Perl''
@@ -75,13 +75,13 @@
 
 \section{Baby XS}
 
-\begin{frame}{Baby XS}
+\begin{frame}[fragile]{Baby XS}
   \begin{block}{}
     Some ``easy'' idioms and rules-of-thumb to keep XS from becoming overwhelming
   \end{block}
   \begin{itemize}
     \item ignores typemaps
-    \item uses Perl datatype functions from perlguts
+    \item uses Perl datatype-specific functions from \verb!perldoc perlguts!
     \item ignores most of the XSpp commands
     \item ignores stack macros
     \item avoids (most) issues of ``mortalization''
