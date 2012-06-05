@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{use} \PY{n}{strict}\PY{p}{;}
+\PY{k}{use} \PY{n}{warnings}\PY{p}{;}
+
+\PY{k}{use} \PY{n+nn}{Module::Build}\PY{p}{;}
+
+\PY{k}{my} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{builder} \PY{o}{=} \PY{n+nn}{Module::Build}\PY{o}{-}\PY{o}{>}\PY{k}{new}\PY{p}{(}
+    \PY{n}{module\PYZus{}name}       \PY{o}{=}\PY{o}{>} \PY{l+s}{'MyModule'}\PY{p}{,}
+    \PY{n}{dist\PYZus{}author}       \PY{o}{=}\PY{o}{>} \PY{l+s}{'Joel Berger'}\PY{p}{,}
+    \PY{n}{license}           \PY{o}{=}\PY{o}{>} \PY{l+s}{'perl'}\PY{p}{,}
+    \PY{n}{configure\PYZus{}requires} \PY{o}{=}\PY{o}{>} \PY{p}{\PYZob{}}
+      \PY{l+s}{'Module::Build'} \PY{o}{=}\PY{o}{>} \PY{l+m+mf}{0.38}\PY{p}{,}
+    \PY{p}{\PYZcb{}}\PY{p}{,}
+    \PY{n}{build\PYZus{}requires}    \PY{o}{=}\PY{o}{>} \PY{p}{\PYZob{}}
+      \PY{l+s}{'ExtUtils::CBuilder'} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{0}\PY{p}{,}
+    \PY{p}{\PYZcb{}}\PY{p}{,}    
+    \PY{n}{extra\PYZus{}linker\PYZus{}flags} \PY{o}{=}\PY{o}{>} \PY{l+s}{'-lsomelib'}\PY{p}{,}
+\PY{p}{)}\PY{p}{;}
+
+\PY{n+nv}{\PYZdl{}}\PY{n+nv}{builder}\PY{o}{-}\PY{o}{>}\PY{n}{create\PYZus{}build\PYZus{}script}\PY{p}{;}
+\end{Verbatim}
