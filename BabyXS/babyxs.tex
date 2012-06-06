@@ -23,7 +23,7 @@
   anchor=west
 }}
 
-\usetheme[secheader]{Madrid}
+\usetheme{Madrid}
 \setbeamercovered{transparent=50}
 
 \title[Baby XS]{Baby XS: Just enough to get you started\\YAPC::NA 2012}
@@ -43,15 +43,24 @@
   \insertlogo
 \end{frame}
 
-\begin{frame}{Outline}
-  \tableofcontents
-\end{frame}
-
-\section{Introduction}
-
 \begin{frame}{What is XS?}
   \begin{itemize}
-    \item XS links Perl and C
+    \item XS the mechanism used to connect Perl and C
+      \begin{itemize}
+        \item write optimized functions
+        \item access \code{C} libraries
+      \end{itemize}
+  \end{itemize}
+  \vfill
+  \begin{tikzpicture}
+    \node (perl) [file,align=left] {\code{\#!/usr/bin/perl}\\\code{my \$var $=$ from\_c()}};
+    \node (xs) [right=of perl,align=center,draw,thick] {\Large XS\\?};
+    \node (c) [file,right=of xs,align=left] {\code{\#include ``headers''}\\\code{int from\_c () \{ \ldots \}}};
+    \draw [thick,<-] (perl) -- (xs);
+    \draw [thick,->] (xs) -- (c);
+  \end{tikzpicture}
+  \vfill
+  \begin{itemize}
     \item XS is C functions/macros provided by Perl headers
     \item XS is also XS-preprocessesor directives
   \end{itemize}
@@ -77,10 +86,8 @@
   \end{itemize}
 \end{frame}
 
-\section{Baby XS}
-
 \begin{frame}{Baby XS}
-  \begin{block}{}
+  \begin{block}{What is Baby XS?}
     Some ``easy'' idioms and rules-of-thumb to keep XS from becoming overwhelming
   \end{block}
   \begin{itemize}
@@ -90,6 +97,7 @@
     \item ignores stack macros
     \item avoids (most) issues of ``mortalization''
     \item uses a Perl-level function wrapper to munge input/output if needed
+    \item expands to ``real'' XS
   \end{itemize}
 \end{frame}
 
@@ -111,8 +119,6 @@
     You can add you own automatic conversions via a \code{Typemap} file
   \end{block}
 \end{frame}
-
-\section{The Code}
 
 \begin{frame}[fragile]{Sample XS File}
   \scriptsize
@@ -162,28 +168,30 @@
     \begin{column}{0.54\linewidth}
       \begin{block}{Creation}
         \begin{itemize}
-          \item \code{newSViv(IV)}
-          \item \code{newSVuv(UV)}
-          \item \code{newSVnv(double)}
-          \item \code{newSVpvf(const char*, ...)}
-          \item \code{newSVsv(SV*)}
+          \item \code{SV* newSViv(IV)}
+          \item \code{SV* newSVnv(double)}
+          \item \code{SV* newSVpvf(const char*, ...)}
+          \item \code{SV* newSVsv(SV*)}
         \end{itemize}
       \end{block}
     \end{column}
     \begin{column}{0.44\linewidth}
       \begin{block}{Accessing}<2->
         \begin{itemize}
-          \item \code{SvIV(SV*)}
-          \item \code{SvUV(SV*)}
-          \item \code{SvNV(SV*)}
-          \item \code{SvPV(SV*, STRLEN len)}
-          \item \code{SvPV\_nolen(SV*)}
+          \item \code{int SvIV(SV*)}
+          \item \code{double SvNV(SV*)}
+          \item \code{char* SvPV(SV*, STRLEN len)}
+          \item \code{char* SvPV\_nolen(SV*)}
         \end{itemize}
       \end{block}
     \end{column}
   \end{columns}
   \begin{block}{Other Actions}<3->
-    Plenty of other Perl-like actions, e.g. truth, concatenation etc.\\See \code{perldoc perlguts} for more.
+    Plenty of other Perl-like actions, see \code{perldoc perlguts} for more.
+    \begin{itemize}
+      \item \code{SvTRUE(SV*)} --- test for ``truth''
+      \item \code{sv\_catsv(SV*, SV*)} --- join strings
+    \end{itemize}
   \end{block}
 \end{frame}
 
@@ -193,7 +201,7 @@
     \item filled with \code{SV*} objects
     \item used as argument or return value, Perl uses references
     \item ``mortalization'' problem for returns
-    \item Baby XS way to return multiple values:
+    \item recommended Baby XS way to return multiple values:
   \end{itemize}
   \vfill
   \begin{block}{}
@@ -202,7 +210,7 @@
   \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{The Perl Module}
+\begin{frame}[fragile]{Sample Perl Module}
   \begin{block}{}
     \scriptsize
     \input{code/module}
