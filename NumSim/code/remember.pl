@@ -3,7 +3,11 @@ use Method::Signatures::Modifiers;
 use MooseX::RememberHistory;
 
 class MyClass {
-  has 'x' => ( traits => ['RememberHistory'], isa => 'Num', is => 'rw', default => 0 );
+  has 'x' => ( 
+    traits => ['RememberHistory'], 
+    isa => 'Num', is => 'rw',
+    default => 0
+  );
 }
 
 my $obj = MyClass->new;
