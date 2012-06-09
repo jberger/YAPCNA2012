@@ -12,27 +12,27 @@ my $thing = MyThing->new(
   mass => 2,
 );
 
-my $force = MyForce->new(
+my $acc = MyForce->new(
   strength => 2,
   affect => sub {
-    my ($self, $thing, $sim) = @_;
+    my ($self, $thing) = @_;
     return $self->strength;
   },
 );
 
-my $short_force = MyForce->new(
-  strength => 5,
+my $dec = MyForce->new(
+  strength => -50,
   affect => sub {
-    my ($self, $thing, $sim) = @_;
-    return 0 if ($thing->x > 0.1);
+    my ($self, $thing) = @_;
+    return 0 if ($thing->x < 0.1);
     return $self->strength;
   },
 );
 
 my $sim = MySim->new(
+  end => 5,
   things => [ $thing ],
-  forces => [ $force, $short_force ],
-  steps  => 100,
+  forces => [ $acc, $dec ],
 );
 
 $sim->run;

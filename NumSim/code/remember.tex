@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{use} \PY{n+nn}{MooseX::Declare}\PY{p}{;}
+\PY{k}{use} \PY{n+nn}{Method::Signatures::Modifiers}\PY{p}{;}
+\PY{k}{use} \PY{n+nn}{MooseX::RememberHistory}\PY{p}{;}
+
+\PY{n}{class} \PY{n}{MyClass} \PY{p}{\PYZob{}}
+  \PY{n}{has} \PY{l+s}{'x'} \PY{o}{=}\PY{o}{>} \PY{p}{(} 
+    \PY{n}{traits} \PY{o}{=}\PY{o}{>} \PY{p}{[}\PY{l+s}{'RememberHistory'}\PY{p}{]}\PY{p}{,} 
+    \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'Num'}\PY{p}{,} \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'rw'}\PY{p}{,}
+    \PY{n}{default} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{0}
+  \PY{p}{)}\PY{p}{;}
+\PY{p}{\PYZcb{}}
+
+\PY{k}{my} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{obj} \PY{o}{=} \PY{n}{MyClass}\PY{o}{-}\PY{o}{>}\PY{k}{new}\PY{p}{;}
+\PY{n+nv}{\PYZdl{}}\PY{n+nv}{obj}\PY{o}{-}\PY{o}{>}\PY{n}{x}\PY{p}{(} \PY{l+m+mi}{1} \PY{p}{)}\PY{p}{;}
+\PY{n+nv}{\PYZdl{}}\PY{n+nv}{obj}\PY{o}{-}\PY{o}{>}\PY{n}{x}\PY{p}{(} \PY{l+m+mi}{2} \PY{p}{)}\PY{p}{;}
+
+\PY{k}{print} \PY{n+nb}{join} \PY{l+s}{', '}\PY{p}{,} \PY{n+nv}{@}\PY{p}{\PYZob{}} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{obj}\PY{o}{-}\PY{o}{>}\PY{n}{x\PYZus{}history} \PY{p}{\PYZcb{}}\PY{p}{;}
+\PY{c+c1}{\PYZsh{} 0, 1, 2}
+\end{Verbatim}

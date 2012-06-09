@@ -7,9 +7,9 @@ class MySim {
 
   use List::Util 'sum';
 
-  has 'start'  => (isa => 'Num', is => 'ro', default => 0);
-  has 'end'    => (isa => 'Num', is => 'ro', default => 1);
-  has 'steps'  => (isa => 'Num', is => 'ro', default => 10);
+  has 'start'  => ( isa => 'Num', is => 'ro', default => 0 );
+  has 'end'    => ( isa => 'Num', is => 'ro', default => 1 );
+  has 'steps'  => ( isa => 'Num', is => 'ro', default => 100 );
 
   has 'step'   => ( isa => 'Num', is => 'ro', lazy => 1, builder => 'init_step' );
   has 'time'   => ( traits => [ 'RememberHistory' ], isa => 'Num', is => 'rw', lazy => 1, builder => 'init_time' );
@@ -28,7 +28,7 @@ class MySim {
     my $dt = $self->step;
     my $vx = $thing->vx;
 
-    my $force = sum map { $_->affect->($_, $thing, $self) } @{ $self->forces };
+    my $force = sum map { $_->affect->($_, $thing) } @{ $self->forces };
     my $acc = $force / ($thing->mass);
 
     $thing->vx( $vx + $acc * $dt );

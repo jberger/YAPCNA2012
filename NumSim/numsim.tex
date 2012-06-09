@@ -5,11 +5,13 @@
 \usepackage{tikz}
 \usepackage{url}
 
+\usepackage{pygments}
+
+\providecommand{\code}[1]{{\texttt{\scriptsize{#1}}}}
+
 \begin{document}
 
-%\begin{frame}{All Classes}[fragile]
-%  \input{ex/tex/allclass}
-%\end{frame}
+\section{The Problems}
 
 \begin{frame}{The Challenge: A Flexible Interface to a Complex Model}
   \begin{tikzpicture}[scale=0.7]
@@ -53,6 +55,15 @@
   \end{block}
 \end{frame}
 
+\begin{frame}{Physical Simulations}
+  \begin{block}{Differential Equations}
+    A set of rules that define how variables change with some parameter
+    \begin{equation*}
+      x(t_2) = x(t_1) + \frac{dx}{dt}*dt
+    \end{equation*}
+  \end{block}
+\end{frame}
+
 \begin{frame}{Other Attempts}
   \begin{columns}
     \begin{column}{0.49\linewidth}
@@ -83,6 +94,29 @@
         \item Composing DEs not trivial
         \item User-facing object instantiation not trivial
         \item Some numerical problems (?)
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\section{Perl Solution}
+
+\begin{frame}[fragile]{\ldots But First, Some Bookkeeping}
+  If an object knows where it is, can it remember where it came from?
+  \begin{columns}
+    \begin{column}{0.49\linewidth}
+      \begin{block}{}
+        \scriptsize
+        \input{code/remember}
+      \end{block}
+    \end{column}
+    \begin{column}{0.49\linewidth}
+      \begin{itemize}
+        \item works for fixed width solvers
+        \item adaptive solvers call functions repeatedly (i.e. \code{PerlGSL::DiffEq})
+          \begin{itemize}
+            \item future work: attempt to add callbacks after finished step
+          \end{itemize}
       \end{itemize}
     \end{column}
   \end{columns}
