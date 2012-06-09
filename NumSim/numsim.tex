@@ -59,7 +59,12 @@
   \begin{block}{Differential Equations}
     A set of rules that define how variables change with some parameter
     \begin{equation*}
-      x(t_2) = x(t_1) + \frac{dx}{dt}*dt
+      x(t_2) = x(t_1) + dt*\frac{dx}{dt}\visible<2->{(x,f(t1,t2))}
+    \end{equation*}
+  \end{block}
+  \begin{block}{Example}
+    \begin{equation*}
+      \frac{dx}{dt} = -x \quad\implies\quad x(t) = sin(x*t) + C
     \end{equation*}
   \end{block}
 \end{frame}
