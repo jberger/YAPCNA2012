@@ -1,0 +1,22 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{class} \PY{n}{MySim} \PY{p}{\PYZob{}}
+  \PY{k}{use} \PY{n+nn}{List::Util} \PY{l+s}{'sum'}\PY{p}{;}
+
+  \PY{n}{has} \PY{l+s}{'start'}  \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'Num'}\PY{p}{,} \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'ro'}\PY{p}{,} \PY{n}{default} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{0} \PY{p}{)}\PY{p}{;}
+  \PY{n}{has} \PY{l+s}{'end'}    \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'Num'}\PY{p}{,} \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'ro'}\PY{p}{,} \PY{n}{default} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{1} \PY{p}{)}\PY{p}{;}
+  \PY{n}{has} \PY{l+s}{'steps'}  \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'Num'}\PY{p}{,} \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'ro'}\PY{p}{,} \PY{n}{default} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{100} \PY{p}{)}\PY{p}{;}
+
+  \PY{n}{has} \PY{l+s}{'step'}   \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'Num'}\PY{p}{,} \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'ro'}\PY{p}{,} \PY{n}{lazy} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{builder} \PY{o}{=}\PY{o}{>} \PY{l+s}{'init\PYZus{}step'}\PY{p}{)}\PY{p}{;}
+  \PY{n}{has} \PY{l+s}{'time'}   \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{traits} \PY{o}{=}\PY{o}{>} \PY{p}{[} \PY{l+s}{'RememberHistory'} \PY{p}{]}\PY{p}{,} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'Num'}\PY{p}{,} \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'rw'}\PY{p}{,} 
+                    \PY{n}{lazy} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{builder} \PY{o}{=}\PY{o}{>} \PY{l+s}{'init\PYZus{}time'} \PY{p}{)}\PY{p}{;}
+
+  \PY{n}{has} \PY{l+s}{'things'} \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'ArrayRef[MyThing]'}\PY{p}{,} \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'rw'}\PY{p}{,} \PY{n}{default} \PY{o}{=}\PY{o}{>} \PY{n}{sub}\PY{p}{\PYZob{}}\PY{o}{[]}\PY{p}{\PYZcb{}} \PY{p}{)}\PY{p}{;}
+  \PY{n}{has} \PY{l+s}{'forces'} \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'ArrayRef[MyForce]'}\PY{p}{,} \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'rw'}\PY{p}{,} \PY{n}{default} \PY{o}{=}\PY{o}{>} \PY{n}{sub}\PY{p}{\PYZob{}}\PY{o}{[]}\PY{p}{\PYZcb{}} \PY{p}{)}\PY{p}{;}
+
+  \PY{n}{method} \PY{n}{init\PYZus{}step} \PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+    \PY{k}{my} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{step} \PY{o}{=} \PY{p}{(}\PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n}{end} \PY{o}{-} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n}{start}\PY{p}{)} \PY{o}{/} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n}{steps}\PY{p}{;}
+    \PY{k}{return} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{step}\PY{p}{;}
+  \PY{p}{\PYZcb{}}
+
+  \PY{n}{method} \PY{n}{init\PYZus{}time} \PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}} \PY{k}{return} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n}{start} \PY{p}{\PYZcb{}}
+\end{Verbatim}

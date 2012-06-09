@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PY{n}{method} \PY{n}{evolve} \PY{p}{(} \PY{n}{MyThing} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{thing} \PY{p}{)} \PY{p}{\PYZob{}}
+    \PY{k}{my} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{dt} \PY{o}{=} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n}{step}\PY{p}{;}
+    \PY{k}{my} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{vx} \PY{o}{=} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{thing}\PY{o}{-}\PY{o}{>}\PY{n}{vx}\PY{p}{;}
+
+    \PY{k}{my} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{force} \PY{o}{=} \PY{n}{sum} \PY{n+nb}{map} \PY{p}{\PYZob{}} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{\PYZus{}}\PY{o}{-}\PY{o}{>}\PY{n}{affect}\PY{o}{-}\PY{o}{>}\PY{p}{(}\PY{n+nv}{\PYZdl{}}\PY{n+nv}{\PYZus{}}\PY{p}{,} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{thing}\PY{p}{)} \PY{p}{\PYZcb{}} \PY{n+nv}{@}\PY{p}{\PYZob{}} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n}{forces} \PY{p}{\PYZcb{}}\PY{p}{;}
+    \PY{k}{my} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{acc} \PY{o}{=} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{force} \PY{o}{/} \PY{p}{(}\PY{n+nv}{\PYZdl{}}\PY{n+nv}{thing}\PY{o}{-}\PY{o}{>}\PY{n}{mass}\PY{p}{)}\PY{p}{;}
+
+    \PY{n+nv}{\PYZdl{}}\PY{n+nv}{thing}\PY{o}{-}\PY{o}{>}\PY{n}{vx}\PY{p}{(} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{vx} \PY{o}{+} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{acc} \PY{o}{*} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{dt} \PY{p}{)}\PY{p}{;}
+    \PY{n+nv}{\PYZdl{}}\PY{n+nv}{thing}\PY{o}{-}\PY{o}{>}\PY{n}{x}\PY{p}{(} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{thing}\PY{o}{-}\PY{o}{>}\PY{n}{x} \PY{o}{+} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{vx} \PY{o}{*} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{dt} \PY{p}{)}\PY{p}{;}
+  \PY{p}{\PYZcb{}}
+
+  \PY{n}{method} \PY{n}{run} \PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+    \PY{k}{while} \PY{p}{(}\PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n+nb}{time} \PY{o}{<} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n}{end}\PY{p}{)} \PY{p}{\PYZob{}}
+      \PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n}{evolve}\PY{p}{(} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{\PYZus{}} \PY{p}{)} \PY{k}{for} \PY{n+nv}{@}\PY{p}{\PYZob{}} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n}{things} \PY{p}{\PYZcb{}}\PY{p}{;}
+      \PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n+nb}{time}\PY{p}{(} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n+nb}{time} \PY{o}{+} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n}{step} \PY{p}{)}\PY{p}{;}
+    \PY{p}{\PYZcb{}}
+  \PY{p}{\PYZcb{}}
+\PY{p}{\PYZcb{}} \PY{c+c1}{\PYZsh{} end of class MySim}
+\end{Verbatim}
