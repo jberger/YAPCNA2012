@@ -12,7 +12,7 @@ my $acc = MyForce->new(
 );
 
 my $dec = MyForce->new(
-  strength => -50,
+  strength => -30,
   affect => sub {
     my ($self, $thing) = @_;
     return 0 if ($thing->x < 0.1);
