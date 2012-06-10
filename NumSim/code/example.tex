@@ -1,0 +1,37 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{}!/usr/bin/env perl}
+\PY{k}{use} \PY{n}{strict}\PY{p}{;} \PY{k}{use} \PY{n}{warnings}\PY{p}{;}
+
+\PY{k}{use} \PY{n}{MySim}\PY{p}{;}
+\PY{k}{use} \PY{n}{PDL}\PY{p}{;}
+\PY{k}{use} \PY{n+nn}{PDL::}\PY{n+nn}{Graphics::}\PY{n+nn}{Prima::}\PY{n}{Simple}\PY{p}{;}
+
+\PY{k}{my} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{thing} \PY{o}{=} \PY{n}{MyThing}\PY{o}{-}\PY{o}{>}\PY{k}{new}\PY{p}{(} \PY{n}{mass} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{2} \PY{p}{)}\PY{p}{;}
+
+\PY{k}{my} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{acc} \PY{o}{=} \PY{n}{MyForce}\PY{o}{-}\PY{o}{>}\PY{k}{new}\PY{p}{(}
+  \PY{n}{strength} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{2}\PY{p}{,}
+  \PY{n}{affect} \PY{o}{=}\PY{o}{>} \PY{k}{sub }\PY{p}{\PYZob{}}\PY{n+nb}{shift}\PY{o}{-}\PY{o}{>}\PY{n}{strength}\PY{p}{\PYZcb{}}\PY{p}{,}
+\PY{p}{)}\PY{p}{;}
+
+\PY{k}{my} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{dec} \PY{o}{=} \PY{n}{MyForce}\PY{o}{-}\PY{o}{>}\PY{k}{new}\PY{p}{(}
+  \PY{n}{strength} \PY{o}{=}\PY{o}{>} \PY{o}{-}\PY{l+m+mi}{50}\PY{p}{,}
+  \PY{n}{affect} \PY{o}{=}\PY{o}{>} \PY{k}{sub }\PY{p}{\PYZob{}}
+    \PY{k}{my} \PY{p}{(}\PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{p}{,} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{thing}\PY{p}{)} \PY{o}{=} \PY{n+nv}{@}\PY{n+nv}{\PYZus{}}\PY{p}{;}
+    \PY{k}{return} \PY{l+m+mi}{0} \PY{k}{if} \PY{p}{(}\PY{n+nv}{\PYZdl{}}\PY{n+nv}{thing}\PY{o}{-}\PY{o}{>}\PY{n}{x} \PY{o}{<} \PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{;}
+    \PY{k}{return} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{self}\PY{o}{-}\PY{o}{>}\PY{n}{strength}\PY{p}{;}
+  \PY{p}{\PYZcb{}}\PY{p}{,}
+\PY{p}{)}\PY{p}{;}
+
+\PY{k}{my} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{sim} \PY{o}{=} \PY{n}{MySim}\PY{o}{-}\PY{o}{>}\PY{k}{new}\PY{p}{(}
+  \PY{n}{end} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{5}\PY{p}{,}
+  \PY{n}{things} \PY{o}{=}\PY{o}{>} \PY{p}{[} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{thing} \PY{p}{]}\PY{p}{,}
+  \PY{n}{forces} \PY{o}{=}\PY{o}{>} \PY{p}{[} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{acc}\PY{p}{,} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{dec} \PY{p}{]}\PY{p}{,}
+\PY{p}{)}\PY{p}{;}
+
+\PY{n+nv}{\PYZdl{}}\PY{n+nv}{sim}\PY{o}{-}\PY{o}{>}\PY{n}{run}\PY{p}{;}
+
+\PY{k}{my} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{time} \PY{o}{=} \PY{n}{pdl} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{sim}\PY{o}{-}\PY{o}{>}\PY{n}{time\PYZus{}history}\PY{p}{;}
+\PY{k}{my} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{x}    \PY{o}{=} \PY{n}{pdl} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{thing}\PY{o}{-}\PY{o}{>}\PY{n}{x\PYZus{}history}\PY{p}{;}
+
+\PY{n}{line\PYZus{}plot}\PY{p}{(}\PY{n+nv}{\PYZdl{}}\PY{n+nv}{time}\PY{p}{,} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{x}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
