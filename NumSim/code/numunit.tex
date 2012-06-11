@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{use} \PY{n+nn}{MooseX::Declare}\PY{p}{;}
+\PY{k}{use} \PY{n+nn}{Method::Signatures::Modifiers}\PY{p}{;}
+
+\PY{n}{class} \PY{n}{SphericalCow} \PY{p}{\PYZob{}}
+  \PY{k}{use} \PY{n+nn}{MooseX::Types::NumUnit} \PY{l+s+sx}{qw/num\PYZus{}of\PYZus{}unit/}\PY{p}{;}
+  \PY{n}{has} \PY{l+s}{'radius'}   \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{n}{num\PYZus{}of\PYZus{}unit}\PY{p}{(}\PY{l+s}{'m'}\PY{p}{)}\PY{p}{,}   \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'rw'}\PY{p}{,} \PY{n}{default} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{1} \PY{p}{)}\PY{p}{;}
+  \PY{n}{has} \PY{l+s}{'velocity'} \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{n}{num\PYZus{}of\PYZus{}unit}\PY{p}{(}\PY{l+s}{'m/s'}\PY{p}{)}\PY{p}{,} \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'rw'}\PY{p}{,} \PY{n}{default} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{0} \PY{p}{)}\PY{p}{;}
+\PY{p}{\PYZcb{}}
+
+\PY{k}{use} \PY{n}{strict}\PY{p}{;} \PY{k}{use} \PY{n}{warnings}\PY{p}{;}
+
+\PY{k}{my} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{cow} \PY{o}{=} \PY{n}{SphericalCow}\PY{o}{-}\PY{o}{>}\PY{k}{new}\PY{p}{(}
+  \PY{n}{radius} \PY{o}{=}\PY{o}{>} \PY{l+s}{'1 ft'}\PY{p}{,}
+\PY{p}{)}\PY{p}{;}
+
+\PY{k}{print} \PY{n+nv}{\PYZdl{}}\PY{n+nv}{cow}\PY{o}{-}\PY{o}{>}\PY{n}{radius} \PY{o}{.} \PY{l+s}{"\PYZbs{}n"}\PY{p}{;} \PY{c+c1}{\PYZsh{} 0.3048}
+\end{Verbatim}

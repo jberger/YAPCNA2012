@@ -170,4 +170,34 @@
   \end{columns}
 \end{frame}
 
+\section{Units Handling}
+
+\begin{frame}{Unit Handling (The Implied Covenant)}
+  \begin{block}{Mars Surveyor '98 Orbiter (Sorry Larry!)}
+    \begin{itemize}
+      \item Software used force in Newtons
+      \item Users entered force in Foot-Pounds
+    \end{itemize}
+  \end{block}
+  \vfill
+  The Covenant:
+  \begin{itemize}
+    \item Between programmer and user
+    \item ``Use the same units!''
+    \item Unexpected and possibly undocumented action at a distance
+    \item With Perl and Moose we can do better \ldots
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{\texttt{MooseX::Types::NumUnit}}
+  \begin{itemize}
+    \item \code{Str} to \code{Num} coercions
+    \item convert unit if needed
+  \end{itemize}
+  \begin{block}{}
+    \scriptsize
+    \input{code/numunit}
+  \end{block}
+\end{frame}
+
 \end{document}
