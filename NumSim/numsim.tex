@@ -1,6 +1,7 @@
 \documentclass[mathserif]{beamer}
 
 \usetheme[secheader]{Madrid}
+\setbeamercovered{transparent=50}
 
 \usepackage{tikz}
 \usepackage{url}
@@ -23,29 +24,6 @@
 
 \section{The Problems}
 
-\begin{frame}{The Challenge: A Flexible Interface to a Complex Model}
-  \input{schematic}
-  \begin{itemize}
-    \item Need: Compute dynamics of electron pulse ($w(t)$, $l(t)$)
-    \item Note: Generation and optical elements add terms to DE
-    \item Want: Representitive OO user-level interface
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{The ``State of the Art''}
-  Old codes are
-  \begin{itemize}
-    \item lacking full 6D dynamics
-    \item optimized for performance vs usablilty
-    \item hard to customize
-    \item near impossible to comprehend
-  \end{itemize}
-  \begin{block}{\url{http://laacg.lanl.gov/laacg/services/download_sf.phtml}}
-    \textbf{Getting Started with Poisson Superfish}\\
-    \ldots We do not recommend trying to build an input file ``from scratch.'' Instead, find an example file that is similar to the problem you are trying to solve. Make a copy of the file and then make any necessary modifications to the geometry and options.
-  \end{block}
-\end{frame}
-
 \begin{frame}{Physical Simulations}
   \begin{block}{Differential Equations}
     A set of rules that define how variables change with some parameter
@@ -58,6 +36,30 @@
       \frac{dx}{dt} = -x \quad\implies\quad x(t) = sin(x*t) + C
     \end{equation*}
   \end{block}
+  Imagine a child on a swing (no kicking)
+\end{frame}
+
+\begin{frame}{The Challenge: A Flexible Interface to a Complex Model}
+  \input{schematic}
+  \begin{itemize}
+    \item<2-> Need: Compute dynamics of electron pulse ($w(t)$, $l(t)$)
+    \item<3-> Note: Generation and optical elements add terms to DE
+    \item<4-> Want: Representitive OO user-level interface
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The ``State of the Art''}
+  Old codes are
+  \begin{itemize}
+    \item lacking full 6D dynamics
+    \item optimized for performance vs usablilty
+    \item hard to customize
+    \item near impossible to comprehend
+  \end{itemize}
+  \begin{block}<2->{\url{http://laacg.lanl.gov/laacg/services/download_sf.phtml}}
+    \textbf{Getting Started with Poisson Superfish}\\
+    \ldots We do not recommend trying to build an input file ``from scratch.'' Instead, find an example file that is similar to the problem you are trying to solve. Make a copy of the file and then make any necessary modifications to the geometry and options.
+  \end{block}
 \end{frame}
 
 \begin{frame}{Other Attempts}
@@ -65,32 +67,40 @@
     \begin{column}{0.49\linewidth}
       Mathematica:\\
       Pros:
+      \uncover<2->{
       \begin{itemize}
         \item Can solve dynamics
         \item Pretty-printing of math for readability
       \end{itemize}
+      }
       Cons:
+      \uncover<3->{
       \begin{itemize}
         \item Closed-source and expensive!
         \item No OO and no key-value datatypes
         \item Still rather slow $\sim$2mins$/$sim
       \end{itemize}
+      }
     \end{column}
     \begin{column}{0.49\linewidth}
       Modelica:\\
       Pros:
+      \uncover<4->{
       \begin{itemize}
         \item Open-source, but behind close-source variants
         \item Unique OO language for physical simulation
         \item Classes have DEs as properties
       \end{itemize}
+      }
       Cons:
+      \uncover<5->{
       \begin{itemize}
         \item Lacks ``has-a'' relationship
         \item Composing DEs not trivial
         \item User-facing object instantiation not trivial
         \item Some numerical problems (?)
       \end{itemize}
+      }
     \end{column}
   \end{columns}
 \end{frame}
@@ -154,8 +164,11 @@
         \scriptsize
         \input{code/example2}
       \end{block}
+      \vspace{4mm}
       \centering
-      \includegraphics[width=0.8\linewidth]{example.png}
+      \visible<2->{
+        \includegraphics[width=0.8\linewidth]{example.png}
+      }
     \end{column}
   \end{columns}
 \end{frame}
@@ -172,10 +185,10 @@
   \vfill
   The Covenant:
   \begin{itemize}
-    \item Between programmer and user
-    \item ``Use the same units!''
-    \item Unexpected and possibly undocumented action at a distance
-    \item With Perl and Moose we can do better \ldots
+    \item<2-> Between programmer and user
+    \item<3-> ``Use the same units!''
+    \item<4-> Unexpected and possibly undocumented action at a distance
+    \item<5-> With Perl and Moose we can do better \ldots
   \end{itemize}
 \end{frame}
 
