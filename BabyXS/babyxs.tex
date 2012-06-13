@@ -59,9 +59,10 @@
     \draw [thick,->] (xs) -- (c);
   \end{tikzpicture}
   \vfill
+  \uncover<2->{But what \textit{is} XS?}
   \begin{itemize}
-    \item XS is C functions/macros provided by Perl headers
-    \item XS is also XS-preprocessesor directives
+    \item<3-> XS is C functions/macros provided by Perl headers
+    \item<4-> XS is also XS-preprocessesor directives
   \end{itemize}
 \end{frame}
 
@@ -72,9 +73,9 @@
   \begin{itemize}
     \item ``Baby Perl''
       \begin{itemize}
-        \item no \code{map} / \code{grep}
-        \item no references
-        \item avoids \code{\$\_}
+        \item no use of \code{map} / \code{grep}
+        \item avoids references
+        \item avoids \code{\$\_} and other special variables
       \end{itemize}
     \item ``Full XS'' is powerful but is lots to learn
     \item ``Baby XS'' 
