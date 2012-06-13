@@ -54,7 +54,7 @@
   \begin{tikzpicture}
     \node (perl) [file,align=left] {\code{\#!/usr/bin/perl}\\\code{my \$var $=$ from\_c()}};
     \node (xs) [right=of perl,align=center,draw,thick] {\Large XS\\?};
-    \node (c) [file,right=of xs,align=left] {\code{\#include ``headers''}\\\code{int from\_c () \{ \ldots \}}};
+    \node (c) [file,right=of xs,align=left] {\code{\#include ``headers''}\\\code{int from\_c () \{\ \ldots\ \}}};
     \draw [thick,<-] (perl) -- (xs);
     \draw [thick,->] (xs) -- (c);
   \end{tikzpicture}
@@ -90,13 +90,13 @@
     Some ``easy'' idioms and rules-of-thumb to keep XS from becoming overwhelming
   \end{block}
   \begin{itemize}
-    \item ignores typemaps
-    \item uses Perl datatype-specific functions from \code{perldoc perlguts}
-    \item ignores most of the XSpp commands
-    \item ignores stack macros
-    \item avoids (most) issues of ``mortalization''
-    \item uses a Perl-level function wrapper to munge input/output if needed
-    \item expands to ``real'' XS
+    \item<2-> ignores typemaps
+    \item<3-> uses Perl datatype-specific functions from \code{perldoc perlguts}
+    \item<4-> ignores most of the XSpp commands
+    \item<5-> ignores stack macros
+    \item<6-> avoids (most) issues of ``mortalization''
+    \item<7-> uses a Perl-level function wrapper to munge input/output if needed
+    \item<8-> expands to ``real'' XS
   \end{itemize}
 \end{frame}
 
@@ -107,14 +107,16 @@
     \item Array $\Leftrightarrow$ \code{AV*}
     \item Hash $\Leftrightarrow$ \code{HV*}
   \end{itemize}
-  Of course XS is really C so it also has types like
-  \begin{itemize}
-    \item \code{int}
-    \item \code{double}
-    \item \code{char*}
-  \end{itemize}
-  \ldots which Perl converts to/from \code{SV*} when used as arguments or return value
-  \begin{block}{For Future Reference}
+  \uncover<2->{
+    Of course XS is really C so it also has types like
+    \begin{itemize}
+      \item \code{int}
+      \item \code{double}
+      \item \code{char*}
+    \end{itemize}
+    \ldots which Perl converts to/from \code{SV*} when used as arguments or return value
+  }
+  \begin{block}<3->{For Future Reference}
     You can add you own automatic conversions via a \code{Typemap} file
   \end{block}
 \end{frame}
@@ -164,8 +166,8 @@
 \begin{frame}{Using \texttt{SV*}s}
   SV* behave like scalars in Perl, but have different actions based on type
   \begin{columns}
-    \begin{column}{0.54\linewidth}
-      \begin{block}{Creation}
+    \begin{column}{0.49\linewidth}
+      \begin{block}{Creating}
         \begin{itemize}
           \item \code{SV* newSViv(IV)}
           \item \code{SV* newSVnv(double)}
@@ -174,7 +176,7 @@
         \end{itemize}
       \end{block}
     \end{column}
-    \begin{column}{0.44\linewidth}
+    \begin{column}{0.49\linewidth}
       \begin{block}{Accessing}<2->
         \begin{itemize}
           \item \code{int SvIV(SV*)}
