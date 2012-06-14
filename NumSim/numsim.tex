@@ -4,6 +4,7 @@
 \setbeamercovered{transparent=50}
 
 \usepackage{tikz}
+\usetikzlibrary{calc}
 \usepackage{url}
 
 \usepackage{pygments}
@@ -38,6 +39,10 @@
       \frac{d^2x}{dt^2} = -x \quad\implies\quad x(t) = sin(x*t) + C
     \end{equation*}
   \end{block}
+\end{frame}
+
+\begin{frame}{My Research: Ultrafast Electron Microscopy}
+  \input{hardware}
 \end{frame}
 
 \begin{frame}{The Challenge: A Flexible Interface to a Complex Model}
@@ -119,11 +124,13 @@
     \end{column}
     \begin{column}{0.49\linewidth}
       \begin{itemize}
-        \item works for fixed width solvers
-        \item adaptive solvers call functions repeatedly (i.e. \code{PerlGSL::DiffEq})
-          \begin{itemize}
-            \item future work: attempt to add callbacks after finished step
-          \end{itemize}
+        \item<2-> use objects as data storage
+        \begin{itemize}
+          \item<3-> current data during simulation
+          \item<4-> all data afterwards
+        \end{itemize}
+        \item<5-> works for fixed width solvers
+        \item<6-> adaptive solvers call functions repeatedly (i.e. \code{PerlGSL::DiffEq})
       \end{itemize}
     \end{column}
   \end{columns}
