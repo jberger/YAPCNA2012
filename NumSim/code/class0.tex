@@ -1,18 +1,18 @@
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{class} \PY{n}{MyForce} \PY{p}{\PYZob{}}
+\PY{k}{use} \PY{n+nn}{MooseX::RememberHistory}\PY{p}{;}
+\PY{k}{use} \PY{n+nn}{MooseX::Declare}\PY{p}{;}
+\PY{k}{use} \PY{n+nn}{Method::Signatures::Modifiers}\PY{p}{;}
 
+\PY{n}{class} \PY{n}{MyForce} \PY{p}{\PYZob{}}
   \PY{n}{has} \PY{l+s}{'strength'} \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'Num'}\PY{p}{,}  \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'rw'}\PY{p}{,} \PY{n}{default} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{0} \PY{p}{)}\PY{p}{;}
-  \PY{n}{has} \PY{l+s}{'affect'}   \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'CodeRef'}\PY{p}{,} \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'ro'}\PY{p}{,} \PY{n}{required} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{1} \PY{p}{)}\PY{p}{;}
-  
+  \PY{n}{has} \PY{l+s}{'affect'}   \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'CodeRef'}\PY{p}{,} \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'ro'}\PY{p}{,} \PY{n}{required} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{1} \PY{p}{)}\PY{p}{;} 
 \PY{p}{\PYZcb{}}
 
 \PY{n}{class} \PY{n}{MyThing} \PY{p}{\PYZob{}}
-
   \PY{n}{has} \PY{l+s}{'mass'} \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'Num'}\PY{p}{,} \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'ro'}\PY{p}{,} \PY{n}{required} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{1} \PY{p}{)}\PY{p}{;}
   \PY{n}{has} \PY{l+s}{'x'}    \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{traits} \PY{o}{=}\PY{o}{>} \PY{p}{[} \PY{l+s}{'RememberHistory'} \PY{p}{]}\PY{p}{,} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'Num'}\PY{p}{,} 
                   \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'rw'}\PY{p}{,} \PY{n}{default} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{0} \PY{p}{)}\PY{p}{;}
   \PY{n}{has} \PY{l+s}{'vx'}   \PY{o}{=}\PY{o}{>} \PY{p}{(} \PY{n}{traits} \PY{o}{=}\PY{o}{>} \PY{p}{[} \PY{l+s}{'RememberHistory'} \PY{p}{]}\PY{p}{,} \PY{n}{isa} \PY{o}{=}\PY{o}{>} \PY{l+s}{'Num'}\PY{p}{,}
                   \PY{n}{is} \PY{o}{=}\PY{o}{>} \PY{l+s}{'rw'}\PY{p}{,} \PY{n}{default} \PY{o}{=}\PY{o}{>} \PY{l+m+mi}{0} \PY{p}{)}\PY{p}{;}
-
 \PY{p}{\PYZcb{}}
 \end{Verbatim}

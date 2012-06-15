@@ -94,9 +94,11 @@
     \item<2-> ignores typemaps
     \item<3-> uses Perl datatype-specific functions from \code{perldoc perlguts}
     \item<4-> ignores most of the XSpp commands
-    \item<5-> ignores stack macros
-    \item<6-> avoids (most) issues of ``mortalization''
-    \item<7-> uses a Perl-level function wrapper to munge input/output if needed
+    \item<5-> uses a Perl-level function wrapper to munge input/output if needed
+    \begin{itemize}
+      \item<6-> ignores stack macros
+      \item<7-> avoids (most) issues of ``mortalization''
+    \end{itemize}
     \item<8-> expands to ``real'' XS
   \end{itemize}
 \end{frame}
