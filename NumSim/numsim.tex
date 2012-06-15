@@ -32,11 +32,10 @@
       x(t_2) = x(t_1) + dt*\frac{dx}{dt}\visible<2->{(x,f(t1,t2))}
     \end{equation*}
   \end{block}
-  \begin{block}{Example: Simple Harmonic Oscillator}
-    \centering
-    \includegraphics[width=0.2\linewidth]{swing.jpg}
+  \vfill
+  \begin{block}<3->{Example: Exponential Growth}
     \begin{equation*}
-      \frac{d^2x}{dt^2} = -x \quad\implies\quad x(t) = sin(x*t) + C
+      \frac{dM}{dt} = r M \quad\implies\quad M(t) = P \exp(r t)
     \end{equation*}
   \end{block}
 \end{frame}
@@ -184,7 +183,7 @@
 \section{Units Handling}
 
 \begin{frame}{Unit Handling (The Implied Covenant)}
-  \begin{block}{Mars Surveyor '98 Orbiter (Sorry Larry!)}
+  \begin{block}{Mars Surveyor '98 Orbiter \visible<2->{(Sorry Larry!)}}
     \begin{itemize}
       \item Software used force in Newtons
       \item Users entered force in Foot-Pounds
@@ -193,10 +192,10 @@
   \vfill
   The Covenant:
   \begin{itemize}
-    \item<2-> Between programmer and user
-    \item<3-> ``Use the same units!''
-    \item<4-> Unexpected and possibly undocumented action at a distance
-    \item<5-> With Perl and Moose we can do better \ldots
+    \item<3-> Between programmer and user
+    \item<4-> ``Use the same units!''
+    \item<5-> Unexpected and possibly undocumented action at a distance
+    \item<6-> With Perl and Moose we can do better \ldots
   \end{itemize}
 \end{frame}
 
