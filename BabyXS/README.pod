@@ -18,7 +18,7 @@ knew little C, and this project helped me learn it.
 
 Many Perl users see XS as black magic and too hard to get into. I
 thought this too, but had to get over the hump in order to write
-L<Math::GSLx::ODEIV2>. In doing so I learned that while XS can be
+L<PerlGSL::DiffEq>. In doing so I learned that while XS can be
 powerful and magical, you actually B<NEED> very little of it. I imagine
 my talk might show a simple example case of wrapping some C code into
 Perl using "baby XS". I term "baby XS" as XS with no C<TYPEMAP>s and just
